@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DE KUSH PROPERTY — Land, Houses & Shops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F7F1EA;
+    --sand-2: #E9DDD1;
+    --night: #4A1F32;
+    --night-dark: #321522;
+    --gold: #C49A5A;
+    --gold-dark: #A77D45;
+    --terracotta: #9B4B5A;
+    --terracotta-dark: #7F3948;
+    --whatsapp: #2FAE60;
+    --whatsapp-dark: #268F4F;
+    --ink: #2E2630;
+    --ink-soft: #6F6570;
+    --card: #FFFFFF;
+    --line: rgba(74,31,50,0.14);
+    --shadow: rgba(74,31,50,0.18);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sand: #171A2E; --sand-2: #1E2238; --ink: #EDE6D3; --ink-soft: #B7B4C8;
+      --card: #222540; --line: rgba(237,230,211,0.14); --shadow: rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --sand: #171A2E; --sand-2: #1E2238; --ink: #EDE6D3; --ink-soft: #B7B4C8;
+    --card: #222540; --line: rgba(237,230,211,0.14); --shadow: rgba(0,0,0,0.4);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sand); color: var(--ink); font-family: 'Work Sans', sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, .display { font-family: 'Fraunces', serif; font-weight: 700; letter-spacing: -0.01em; }
+
+  .topbar { position: sticky; top: 0; z-index: 40; padding: env(safe-area-inset-top, 0px) 0 0 0; background: var(--night-dark); border-bottom: 3px solid var(--gold); }
+  .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .logo { display: flex; align-items: center; gap: 11px; color: #F7F1EA; text-decoration: none; }
+  .logo svg { width: 40px; height: 40px; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .logo-text .name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18.5px; letter-spacing: 0.01em; }
+  .logo-text .name b { color: var(--gold); font-weight: 900; }
+  .logo-text .tag { font-family: 'Work Sans'; font-weight: 600; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #CFC2C8; }
+  .btn { box-shadow: 0 4px 12px rgba(50,21,34,0.10); font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 14.5px; border: none; border-radius: 8px; cursor: pointer; padding: 11px 18px; transition: transform .12s ease; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  .btn:active { transform: scale(0.97); }
+  .btn-gold { background: var(--gold); color: #2D211B; }
+  .btn-gold:hover { background: var(--gold-dark); }
+  .btn-whatsapp { background: var(--whatsapp); color: #fff; }
+  .btn-whatsapp:hover { background: var(--whatsapp-dark); }
+  .btn-outline-light { background: transparent; color: #F7F1EA; border: 1.5px solid rgba(247,241,234,0.38); }
+
+  .hero { background: var(--night); color: #F7F1EA; padding: 50px 20px 34px; position: relative; overflow: hidden; }
+  .hero-inner { max-width: 1180px; margin: 0 auto; position: relative; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-weight: 600; font-size: 13px; margin-bottom: 14px; letter-spacing: 0.04em; }
+  .hero-eyebrow svg { width: 16px; height: 16px; }
+  .hero h1 { font-size: clamp(32px, 5.4vw, 56px); line-height: 1.02; margin: 0 0 14px; max-width: 760px; font-weight: 600; }
+  .hero h1 b { font-weight: 900; color: var(--gold); }
+  .hero p { max-width: 560px; color: #D9CDD2; font-size: 16px; margin: 0 0 28px; }
+
+  .filters { background: var(--card); border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px var(--shadow); display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; position: relative; z-index: 2; }
+  .search-field { flex: 1 1 220px; display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); border-radius: 9px; padding: 0 12px; background: var(--sand); }
+  .search-field input { border: none; background: transparent; outline: none; font: inherit; color: var(--ink); padding: 11px 0; width: 100%; font-size: 15px; }
+  .seg { display: flex; background: var(--sand); border-radius: 9px; padding: 4px; gap: 4px; border: 1.5px solid var(--line); }
+  .seg button { border: none; background: transparent; padding: 8px 14px; border-radius: 6px; font-family: 'Work Sans'; font-weight: 600; font-size: 14px; color: var(--ink-soft); cursor: pointer; }
+  .seg button.active { background: var(--night); color: #F7F1EA; }
+  select.type-select {
+    border: 1.5px solid var(--line); border-radius: 9px; background: var(--sand); color: var(--ink); font: inherit; font-weight: 600; font-size: 14.5px; padding: 0 12px;
+    -webkit-appearance: none; appearance: none; min-width: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235B5A72' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 30px;
+  }
+  .filters-row2 { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); width: 100%; }
+  .filters-row2 .field-mini { display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px; }
+  .filters-row2 label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+
+  .section { max-width: 1180px; margin: 0 auto; padding: 34px 20px 20px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 24px; margin: 0; }
+  .count-note { color: var(--ink-soft); font-size: 14.5px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: var(--card); border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 10px 28px var(--shadow); border: 1px solid var(--line); display: flex; flex-direction: column; transition: transform .15s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px var(--shadow); }
+  .card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+  .card-media svg, .card-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .pill { position: absolute; top: 10px; left: 10px; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; font-family: 'Work Sans'; color: #fff; }
+  .pill.sale { background: var(--night); }
+  .pill.rent { background: var(--terracotta); }
+  .price-tag { position: absolute; left: 12px; bottom: -2px; background: var(--gold); color: #2D211B; padding: 8px 14px 8px 12px; font-weight: 700; font-size: 15px; font-family: 'Fraunces'; border-radius: 3px 8px 8px 3px; box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+  .price-tag::before { content: ""; position: absolute; left: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: var(--gold); border-radius: 50%; box-shadow: -1px 0 0 var(--card); }
+  .price-tag .per { font-family: 'Work Sans'; font-weight: 600; font-size: 11px; opacity: .75; }
+  .card-body { padding: 22px 16px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .card-body h3 { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 600; }
+  .loc { color: var(--ink-soft); font-size: 13.5px; display: flex; align-items: center; gap: 5px; }
+  .lga-tag { font-size: 11.5px; color: var(--gold-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+  :root[data-theme="dark"] .lga-tag { color: var(--gold); }
+  .meta-row { display: flex; gap: 12px; margin-top: 6px; color: var(--ink-soft); font-size: 13px; flex-wrap: wrap; }
+  .meta-row span { display: flex; align-items: center; gap: 4px; }
+
+  .empty { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--ink-soft); }
+  .empty strong { display: block; color: var(--ink); font-size: 18px; margin-bottom: 6px; font-family: 'Fraunces'; }
+
+  .map-section { max-width: 1180px; margin: 0 auto; padding: 30px 20px 20px; }
+  .map-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px var(--shadow); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: center; }
+  @media (max-width: 800px) { .map-card { grid-template-columns: 1fr; } }
+  .map-illustration { background: var(--night-dark); border-radius: 12px; padding: 10px; }
+  .map-illustration svg { width: 100%; height: auto; display: block; }
+  .lga-shape { cursor: pointer; transition: opacity .15s ease; }
+  .lga-shape:hover { opacity: 0.85; }
+  .lga-shape.active { stroke: var(--gold); stroke-width: 3; }
+  .map-copy h3 { font-size: 21px; margin: 0 0 8px; }
+  .map-copy p { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 16px; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .map-legend button { border: 1.5px solid var(--line); background: var(--sand); color: var(--ink); font: inherit; font-weight: 600; font-size: 12.5px; padding: 6px 11px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .map-legend button.active { background: var(--night); color: #F7F1EA; border-color: var(--night); }
+  .map-legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .map-note { font-size: 12px; color: var(--ink-soft); margin-top: 14px; line-height: 1.5; }
+
+  .contact-section { background: var(--night-dark); color: #F7F1EA; margin-top: 40px; padding: 40px 20px calc(40px + env(safe-area-inset-bottom, 0px)); }
+  .contact-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 760px) { .contact-inner { grid-template-columns: 1fr; } }
+  .contact-inner h2 { color: #F7F1EA; font-size: 24px; margin: 0 0 8px; }
+  .contact-inner > div > p.lead { color: #CFC2C8; font-size: 14.5px; margin: 0 0 18px; }
+  .contact-list { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .contact-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; }
+  .contact-list .ic { width: 20px; flex-shrink: 0; text-align: center; color: var(--gold); }
+  .office-card { background: rgba(247,241,234,0.06); border: 1px solid rgba(247,241,234,0.16); border-radius: 14px; padding: 22px; }
+  .office-card h3 { color: var(--gold); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px; font-family: 'Work Sans'; font-weight: 700; }
+  .office-card .addr { font-family: 'Fraunces'; font-size: 19px; font-weight: 600; margin: 0 0 6px; color: #F7F1EA; }
+  .office-card .sub { color: #CFC2C8; font-size: 13.5px; margin: 0 0 18px; }
+  .office-hours { display: flex; justify-content: space-between; font-size: 13.5px; color: #D9CDD2; padding: 7px 0; border-bottom: 1px dashed rgba(247,241,234,0.14); }
+  .office-hours:last-of-type { border-bottom: none; }
+
+  footer { background: var(--night-dark); color: #9A8991; padding: 0 20px calc(24px + env(safe-area-inset-bottom, 0px)); font-size: 12.5px; text-align: center; max-width: 1180px; margin: 0 auto; }
+
+  .overlay { position: fixed; inset: 0; background: rgba(35,18,27,0.62); backdrop-filter: blur(2px); display: none; align-items: flex-start; justify-content: center; z-index: 100; padding: env(safe-area-inset-top, 24px) 16px calc(24px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; }
+  .overlay.open { display: flex; }
+  .modal { background: var(--card); border-radius: 16px; max-width: 640px; width: 100%; margin-top: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+  .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .modal-head h3 { margin: 0; font-size: 18px; }
+  .icon-btn { background: var(--sand); border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 16px; cursor: pointer; color: var(--ink); }
+  .modal-body { padding: 20px; }
+  .modal-media { border-radius: 10px; overflow: hidden; margin-bottom: 16px; aspect-ratio: 16/9; }
+  .modal-media svg, .modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .modal-price { font-family: 'Fraunces'; font-weight: 900; font-size: 26px; color: var(--night); }
+  :root[data-theme="dark"] .modal-price { color: var(--gold); }
+  .modal-desc { color: var(--ink-soft); margin: 14px 0; font-size: 15px; }
+  .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .modal-actions .btn { flex: 1; justify-content: center; min-width: 160px; }
+  .btn-map { background: var(--sand); color: var(--ink); border: 1.5px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="logo" href="#" onclick="return false;">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="31" fill="#14172B" stroke="#CE9F3E" stroke-width="1.5"/>
+        <circle cx="32" cy="15" r="4" fill="#CE9F3E"/>
+        <path d="M32 22 L50 47 L14 47 Z" fill="none" stroke="#CE9F3E" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M32 22 L32 47" stroke="#CE9F3E" stroke-width="1.6"/>
+        <path d="M23 34 L41 34" stroke="#CE9F3E" stroke-width="1.6"/>
+      </svg>
+      <span class="logo-text">
+        <span class="name"><b>DE KUSH</b> PROPERTY</span>
+        <span class="tag">FCT Abuja · Land · Houses · Shops</span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L21 20 L3 20 Z" stroke="#CE9F3E" stroke-width="2" stroke-linejoin="round"/></svg>
+      FEDERAL CAPITAL TERRITORY, ABUJA
+    </div>
+    <h1>Land, houses & shops,<br><b>right across the FCT.</b></h1>
+    <p>Every listing here is in Abuja — search by Area Council and neighbourhood, filter by sale or rent, and see prices up front.</p>
+
+    <div class="filters">
+      <div class="search-field">
+        <span>📍</span>
+        <input type="text" id="searchInput" placeholder="Search by area — e.g. Wuse, Gwarinpa, Kubwa">
+      </div>
+      <div class="seg" id="dealSeg">
+        <button data-deal="all" class="active">All</button>
+        <button data-deal="sale">For sale</button>
+        <button data-deal="rent">For rent</button>
+      </div>
+      <select class="type-select" id="typeSelect">
+        <option value="all">All property types</option>
+        <option value="land">Land</option>
+        <option value="house">House / Apartment</option>
+        <option value="shop">Shop / Commercial</option>
+      </select>
+
+      <div class="filters-row2">
+        <div class="field-mini">
+          <label>Local Government (Area Council)</label>
+          <select class="type-select" id="lgaSelect" style="width:100%;">
+            <option value="all">All Area Councils</option>
+          </select>
+        </div>
+        <div class="field-mini">
+          <label>Area / District</label>
+          <select class="type-select" id="areaSelect" style="width:100%;">
+            <option value="all">All areas</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <h2>Available listings</h2>
+    <span class="count-note" id="countNote"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="map-section">
+  <div class="map-card">
+    <div class="map-illustration">
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" id="fctMap">
+        <path class="lga-shape" data-lga="bwari" d="M60 20 L230 20 L210 100 L90 110 Z" fill="#4A5A3D" stroke="#171A2E" stroke-width="2"/>
+        <path class="lga-shape" data-lga="amac" d="M90 110 L210 100 L260 190 L140 230 L80 180 Z" fill="#CE9F3E" stroke="#171A2E" stroke-width="2"/>
+        <path class="lga-shape" data-lga="kuje" d="M140 230 L260 190 L280 280 L170 310 Z" fill="#B85A34" stroke="#171A2E" stroke-width="2"/>
+        <path class="lga-shape" data-lga="gwagwalada" d="M20 190 L80 180 L140 230 L170 310 L40 300 Z" fill="#2E5F6E" stroke="#171A2E" stroke-width="2"/>
+        <path class="lga-shape" data-lga="kwali" d="M40 300 L170 310 L160 335 L60 335 Z" fill="#8B6BAE" stroke="#171A2E" stroke-width="2"/>
+        <path class="lga-shape" data-lga="abaji" d="M230 20 L370 60 L340 140 L210 100 Z" fill="#5A3D2B" stroke="#171A2E" stroke-width="2"/>
+        <text x="150" y="65" fill="#fff" font-size="12" font-family="Work Sans" font-weight="700" text-anchor="middle">Bwari</text>
+        <text x="165" y="165" fill="#241A08" font-size="12" font-family="Work Sans" font-weight="700" text-anchor="middle">AMAC</text>
+        <text x="200" y="255" fill="#fff" font-size="12" font-family="Work Sans" font-weight="700" text-anchor="middle">Kuje</text>
+        <text x="95" y="240" fill="#fff" font-size="11" font-family="Work Sans" font-weight="700" text-anchor="middle">Gwagwalada</text>
+        <text x="105" y="322" fill="#fff" font-size="11" font-family="Work Sans" font-weight="700" text-anchor="middle">Kwali</text>
+        <text x="285" y="85" fill="#fff" font-size="12" font-family="Work Sans" font-weight="700" text-anchor="middle">Abaji</text>
+      </svg>
+    </div>
+    <div class="map-copy">
+      <h3>Explore the six Area Councils</h3>
+      <p>This is an illustrated guide to the FCT's layout — tap an Area Council to filter listings, or open the live, always-current Google Map for the exact area you're interested in.</p>
+      <div class="map-legend" id="mapLegend"></div>
+      <a class="btn btn-gold" id="openGoogleMaps" href="#" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+      <div class="map-note">The map above is a simplified, illustrative layout of the FCT and isn't drawn to scale. The Google Maps button always opens the real, up-to-date map for whichever Area Council or area you've selected.</div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-section">
+  <div class="contact-inner">
+    <div>
+      <h2>Talk to us</h2>
+      <p class="lead">Have a question about a listing, or want to arrange a viewing? Reach the DE KUSH PROPERTY team directly.</p>
+      <ul class="contact-list">
+        <li><span class="ic">📞</span> <div><strong>+234 8069721131</strong><br><span style="color:#B9B6D2;">Mon–Sat, 8am–6pm WAT</span></div></li>
+        <li><span class="ic">✉️</span> <div><strong>adeolakush@gmail.com</strong><br><span style="color:#B9B6D2;">We reply within one business day</span></div></li>
+      </ul>
+      <a class="btn btn-whatsapp" id="generalWhatsapp" href="#" target="_blank" rel="noopener">💬 Chat with us on WhatsApp</a>
+    </div>
+    <div class="office-card">
+      <h3>Head office</h3>
+      <p class="addr">Beside dantata estate, Byzhim Road,<br>Kubwa, Bwari</p>
+      <p class="sub">Abuja, Federal Capital Territory, Nigeria</p>
+      <div class="office-hours"><span>Monday – Friday</span><span>8:00 AM – 6:00 PM</span></div>
+      <div class="office-hours"><span>Saturday</span><span>9:00 AM – 3:00 PM</span></div>
+      <div class="office-hours"><span>Sunday</span><span>Depend on availability</span></div>
+      <a class="btn btn-outline-light" style="margin-top:16px;width:100%;justify-content:center;" href="https://www.google.com/maps/search/?api=1&query=Aminu%20Kano%20Crescent%2C%20Wuse%20II%2C%20Abuja%2C%20FCT%2C%20Nigeria" target="_blank" rel="noopener">Get directions ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>DE KUSH PROPERTY — land, houses & shops across the FCT, Abuja.</p>
+</footer>
+
+<div class="overlay" id="detailOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="detailTitle">Listing</h3>
+      <button class="icon-btn" onclick="closeModal('detailOverlay')">✕</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<script>
+// ======= SET YOUR WHATSAPP NUMBER HERE (international format, digits only, no + or spaces) =======
+const WHATSAPP_NUMBER = '2348069721131';
+// =====================================================================================================
+
+const LGA_LABELS = {
+  amac: 'Abuja Municipal (AMAC)',
+  bwari: 'Bwari',
+  gwagwalada: 'Gwagwalada',
+  kuje: 'Kuje',
+  kwali: 'Kwali',
+  abaji: 'Abaji',
+};
+const LGA_COLORS = {
+  amac: '#CE9F3E', bwari: '#4A5A3D', gwagwalada: '#2E5F6E', kuje: '#B85A34', kwali: '#8B6BAE', abaji: '#5A3D2B',
+};
+const AREA_MAP = {
+  amac: ['Wuse', 'Wuse II', 'Garki', 'Maitama', 'Asokoro', 'Central Business District', 'Utako', 'Jabi', 'Gwarinpa', 'Life Camp', 'Wuye', 'Guzape', 'Lugbe'],
+  bwari: ['Kubwa', 'Dutse', 'Bwari Town', 'Byazhin', 'Ushafa'],
+  gwagwalada: ['Gwagwalada Town', 'Zuba', 'Dobi', 'Ibwa'],
+  kuje: ['Kuje Town', 'Chibiri', 'Gudun Karya'],
+  kwali: ['Kwali Town', 'Yangoji', 'Pai'],
+  abaji: ['Abaji Town', 'Nuku', 'Yaba'],
+};
+
+// Add your real listings here as your properties become available.
+// Copy the format below for each one (see the commented example).
+const SAMPLE_LISTINGS = [
+  // { id: 'l1', title: '3-bedroom bungalow', type: 'house', deal: 'rent', lga: 'amac', area: 'Wuse', price: 1800000, per: '/year', beds: 3, desc: 'Description here.', palette: 0 },
+];
+
+const PALETTES = [
+  { a: '#20264A', b: '#14172B' }, { a: '#B85A34', b: '#954826' }, { a: '#CE9F3E', b: '#AD8330' },
+  { a: '#2E5F6E', b: '#1E4149' }, { a: '#5A3D2B', b: '#3E2A1C' }, { a: '#4A5A3D', b: '#333E2A' },
+];
+
+function iconFor(type) {
+  if (type === 'land') {
+    return `<g stroke="rgba(255,255,255,0.85)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M20 78 L50 30 L80 78 Z" fill="rgba(255,255,255,0.12)"/>
+      <line x1="10" y1="78" x2="90" y2="78"/><line x1="35" y1="78" x2="35" y2="58"/><line x1="65" y1="78" x2="65" y2="58"/><line x1="50" y1="78" x2="50" y2="48"/>
+      <circle cx="24" cy="45" r="7" fill="rgba(255,255,255,0.18)" stroke="none"/>
+    </g>`;
+  }
+  if (type === 'shop') {
+    return `<g stroke="rgba(255,255,255,0.85)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M15 40 L20 22 L80 22 L85 40 Z" fill="rgba(255,255,255,0.16)"/>
+      <path d="M15 40 Q22 46 29 40 Q36 46 43 40 Q50 46 57 40 Q64 46 71 40 Q78 46 85 40" fill="none"/>
+      <rect x="22" y="40" width="56" height="38" fill="rgba(255,255,255,0.1)"/>
+      <rect x="44" y="52" width="12" height="26"/><rect x="28" y="48" width="10" height="12"/><rect x="62" y="48" width="10" height="12"/>
+    </g>`;
+  }
+  return `<g stroke="rgba(255,255,255,0.85)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M18 46 L50 20 L82 46" fill="none"/>
+    <rect x="26" y="46" width="48" height="32" fill="rgba(255,255,255,0.14)"/>
+    <rect x="44" y="58" width="12" height="20"/><rect x="32" y="52" width="9" height="9"/><rect x="59" y="52" width="9" height="9"/>
+  </g>`;
+}
+
+function mediaSVG(type, palette, big) {
+  const p = PALETTES[palette % PALETTES.length];
+  const vb = big ? '0 0 640 360' : '0 0 100 75';
+  const scale = big ? 6.4 : 1;
+  return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="g${palette}${big?'b':''}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${p.a}"/><stop offset="100%" stop-color="${p.b}"/></linearGradient></defs>
+    <rect width="100%" height="100%" fill="url(#g${palette}${big?'b':''})"/>
+    <g transform="translate(${big ? 220 : 0}, ${big ? 30 : 0}) scale(${scale})">${iconFor(type)}</g>
+  </svg>`;
+}
+
+let state = { deal: 'all', type: 'all', query: '', lga: 'all', area: 'all' };
+function currency(n) { return '₦' + Number(n).toLocaleString('en-NG'); }
+function escapeHTML(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+function whatsappLink(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+document.getElementById('generalWhatsapp').href = whatsappLink("Hello DE KUSH PROPERTY, I'd like some help finding a property in Abuja.");
+
+const lgaSelect = document.getElementById('lgaSelect');
+const areaSelect = document.getElementById('areaSelect');
+Object.keys(LGA_LABELS).forEach(key => {
+  const opt = document.createElement('option');
+  opt.value = key; opt.textContent = LGA_LABELS[key];
+  lgaSelect.appendChild(opt);
+});
+
+function refreshAreaOptions(lgaKey) {
+  areaSelect.innerHTML = '<option value="all">All areas</option>';
+  if (lgaKey !== 'all' && AREA_MAP[lgaKey]) {
+    AREA_MAP[lgaKey].forEach(area => {
+      const opt = document.createElement('option');
+      opt.value = area; opt.textContent = area;
+      areaSelect.appendChild(opt);
+    });
+  } else {
+    Object.values(AREA_MAP).flat().forEach(area => {
+      const opt = document.createElement('option');
+      opt.value = area; opt.textContent = area;
+      areaSelect.appendChild(opt);
+    });
+  }
+}
+refreshAreaOptions('all');
+
+lgaSelect.addEventListener('change', () => {
+  state.lga = lgaSelect.value;
+  state.area = 'all';
+  refreshAreaOptions(state.lga);
+  updateMapHighlight();
+  updateMapsLink();
+  render();
+});
+areaSelect.addEventListener('change', () => {
+  state.area = areaSelect.value;
+  updateMapsLink();
+  render();
+});
+
+const mapLegend = document.getElementById('mapLegend');
+Object.keys(LGA_LABELS).forEach(key => {
+  const btn = document.createElement('button');
+  btn.dataset.lga = key;
+  btn.innerHTML = `<span class="dot" style="background:${LGA_COLORS[key]}"></span>${LGA_LABELS[key]}`;
+  btn.addEventListener('click', () => {
+    lgaSelect.value = key;
+    state.lga = key; state.area = 'all';
+    refreshAreaOptions(key);
+    updateMapHighlight();
+    updateMapsLink();
+    render();
+    document.getElementById('grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  mapLegend.appendChild(btn);
+});
+
+document.querySelectorAll('.lga-shape').forEach(shape => {
+  shape.addEventListener('click', () => {
+    const key = shape.dataset.lga;
+    lgaSelect.value = key;
+    state.lga = key; state.area = 'all';
+    refreshAreaOptions(key);
+    updateMapHighlight();
+    updateMapsLink();
+    render();
+  });
+});
+
+function updateMapHighlight() {
+  document.querySelectorAll('.lga-shape').forEach(s => s.classList.toggle('active', s.dataset.lga === state.lga));
+  document.querySelectorAll('#mapLegend button').forEach(b => b.classList.toggle('active', b.dataset.lga === state.lga));
+}
+
+function updateMapsLink() {
+  const link = document.getElementById('openGoogleMaps');
+  let query;
+  if (state.area !== 'all') {
+    query = `${state.area}, ${LGA_LABELS[state.lga] || ''}, FCT, Abuja, Nigeria`;
+  } else if (state.lga !== 'all') {
+    query = `${LGA_LABELS[state.lga]} Area Council, FCT, Abuja, Nigeria`;
+  } else {
+    query = 'Federal Capital Territory, Abuja, Nigeria';
+  }
+  link.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+updateMapsLink();
+
+function matches(item) {
+  if (state.deal !== 'all' && item.deal !== state.deal) return false;
+  if (state.type !== 'all' && item.type !== state.type) return false;
+  if (state.lga !== 'all' && item.lga !== state.lga) return false;
+  if (state.area !== 'all' && item.area !== state.area) return false;
+  if (state.query) {
+    const q = state.query.toLowerCase();
+    if (!item.area.toLowerCase().includes(q) && !item.title.toLowerCase().includes(q)) return false;
+  }
+  return true;
+}
+
+function render() {
+  const grid = document.getElementById('grid');
+  const items = SAMPLE_LISTINGS.filter(matches);
+  document.getElementById('countNote').textContent = items.length + (items.length === 1 ? ' listing' : ' listings');
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty"><strong>Nothing matches yet</strong>Try a different area or clear a filter.</div>`;
+    return;
+  }
+
+  grid.innerHTML = items.map(item => `
+    <div class="card" data-id="${item.id}">
+      <div class="card-media">
+        ${mediaSVG(item.type, item.palette ?? 0, false)}
+        <span class="pill ${item.deal}">${item.deal === 'sale' ? 'For sale' : 'For rent'}</span>
+        <div class="price-tag">${currency(item.price)}${item.per ? `<span class="per"> ${item.per}</span>` : ''}</div>
+      </div>
+      <div class="card-body">
+        <h3>${escapeHTML(item.title)}</h3>
+        <div class="loc">📍 ${escapeHTML(item.area)}, Abuja</div>
+        <div class="lga-tag">${escapeHTML(LGA_LABELS[item.lga] || '')}</div>
+        <div class="meta-row">
+          ${item.beds ? `<span>🛏 ${item.beds} bed</span>` : ''}
+          ${item.size ? `<span>📐 ${escapeHTML(item.size)}</span>` : ''}
+          <span>🏷 ${item.type === 'house' ? 'House' : item.type === 'land' ? 'Land' : 'Shop'}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.card').forEach(card => card.addEventListener('click', () => openDetail(card.dataset.id)));
+}
+
+function openDetail(id) {
+  const item = SAMPLE_LISTINGS.find(i => i.id === id);
+  if (!item) return;
+  const mapsQuery = encodeURIComponent(`${item.area}, ${LGA_LABELS[item.lga]}, FCT, Abuja, Nigeria`);
+  const waMessage = `Hello DE KUSH PROPERTY, I'm interested in "${item.title}" in ${item.area} (${currency(item.price)}${item.per || ''}). Is it still available?`;
+  document.getElementById('detailTitle').textContent = item.title;
+  document.getElementById('detailBody').innerHTML = `
+    <div class="modal-media">${mediaSVG(item.type, item.palette ?? 0, true)}</div>
+    <div class="modal-price">${currency(item.price)}${item.per ? ` <span style="font-size:14px;color:var(--ink-soft);font-family:'Work Sans';font-weight:600;">${item.per}</span>` : ''}</div>
+    <div class="loc" style="margin-top:6px;">📍 ${escapeHTML(item.area)}, Abuja</div>
+    <div class="lga-tag" style="margin-bottom:4px;">${escapeHTML(LGA_LABELS[item.lga])}</div>
+    <div class="meta-row" style="margin-top:10px;">
+      ${item.beds ? `<span>🛏 ${item.beds} bedroom(s)</span>` : ''}
+      ${item.size ? `<span>📐 ${escapeHTML(item.size)}</span>` : ''}
+      <span>🏷 ${item.type === 'house' ? 'House / Apartment' : item.type === 'land' ? 'Land' : 'Shop / Commercial'}</span>
+      <span>${item.deal === 'sale' ? '✅ For sale' : '🔑 For rent'}</span>
+    </div>
+    <p class="modal-desc">${escapeHTML(item.desc || 'No further description was provided for this listing.')}</p>
+    <div class="modal-actions">
+      <a class="btn btn-whatsapp" href="${whatsappLink(waMessage)}" target="_blank" rel="noopener">💬 Contact about this listing</a>
+      <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=${mapsQuery}" target="_blank" rel="noopener">View area on Google Maps ↗</a>
+    </div>
+  `;
+  openModal('detailOverlay');
+}
+
+document.getElementById('dealSeg').addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  state.deal = btn.dataset.deal;
+  document.querySelectorAll('#dealSeg button').forEach(b => b.classList.toggle('active', b === btn));
+  render();
+});
+document.getElementById('typeSelect').addEventListener('change', e => { state.type = e.target.value; render(); });
+document.getElementById('searchInput').addEventListener('input', e => { state.query = e.target.value; render(); });
+
+document.getElementById('detailOverlay').addEventListener('click', e => { if (e.target.id === 'detailOverlay') closeModal('detailOverlay'); });
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+updateMapHighlight();
+render();
+</script>
+</body>
+</html>
